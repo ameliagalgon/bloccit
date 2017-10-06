@@ -5,6 +5,10 @@ class WelcomeController < ApplicationController
   def about
   end
 
+<<<<<<< HEAD
   def contact
+=======
+  def faq
+>>>>>>> assignment-12-testing
   end
 end

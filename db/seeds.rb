@@ -26,3 +26,12 @@ end
 puts "Seed finished"
 puts "#{Post.count} post created"
 puts "#{Comment.count} comments created"
+
+my_post = Post.find_or_create_by!(
+    title: "My Unique Post",
+    body: "I hope you are having a good day!"
+)
+Comment.find_or_create_by!(
+    post: my_post,
+    body: "It's been okay. How are you?"
+)

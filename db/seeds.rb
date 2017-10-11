@@ -19,6 +19,12 @@ require 'random_data'
         body: RandomData.random_paragraph,
         price: rand(50)
     )
+
+    Question.create!(
+        title: RandomData.random_sentence,
+        body: RandomData.random_paragraph,
+        resolved: [true, false].sample
+    )
 end
 post = Post.all
 
@@ -34,3 +40,4 @@ puts "#{Post.count} post created"
 puts "#{Comment.count} comments created"
 
 puts "#{Advertisement.count} ads created"
+puts "#{Question.count} questions created"

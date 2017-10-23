@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
+     resources :topics
+     resources :advertisements, :posts, :questions
 
-  resources :advertisements, :posts, :questions
+     get 'about' => 'welcome#about'
 
-  get 'about' => 'welcome#about'
-
-  root 'welcome#index'
+     root 'welcome#index'
 end

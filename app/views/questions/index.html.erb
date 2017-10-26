@@ -1,5 +1,10 @@
 <h1>All Questions</h1>
 
+<div class="col-md-12">
+ <!-- #9 -->
+     <%= link_to "New Question", new_question_path, class: 'btn btn-success' %>
+ </div>
+
 <% @questions.each do |question| %>
     <div class="media">
         <div class="media-body">

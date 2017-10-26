@@ -9,6 +9,7 @@
 require 'random_data'
 
 50.times do
+=begin
     Post.create!(
         title: RandomData.random_sentence,
         body: RandomData.random_paragraph
@@ -18,7 +19,8 @@ require 'random_data'
         title: RandomData.random_sentence,
         body: RandomData.random_paragraph,
         price: rand(50)
-    )
+   )
+=end
 
     Question.create!(
         title: RandomData.random_sentence,
@@ -27,14 +29,14 @@ require 'random_data'
     )
 end
 post = Post.all
-
+=begin
 100.times do
     Comment.create!(
         post: post.sample,
         body: RandomData.random_paragraph
     )
 end
-
+=end
 puts "Seed finished"
 puts "#{Post.count} post created"
 puts "#{Comment.count} comments created"

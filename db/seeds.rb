@@ -17,7 +17,7 @@ end
 topics = Topic.all
 
 50.times do
-=begin
+
     Post.create!(
          topic: topics.sample,
         title: RandomData.random_sentence,
@@ -29,7 +29,6 @@ topics = Topic.all
         body: RandomData.random_paragraph,
         price: rand(50)
    )
-=end
 
     Question.create!(
         title: RandomData.random_sentence,
@@ -38,14 +37,20 @@ topics = Topic.all
     )
 end
 post = Post.all
-=begin
+question = Question.all 
+
 100.times do
     Comment.create!(
         post: post.sample,
         body: RandomData.random_paragraph
     )
+
+    Answer.create!(
+         question: question.sample,
+         body: RandomData.random_paragraph
+    )
 end
-=end
+
 puts "Seed finished"
 puts "#{Topic.count} topics created"
 puts "#{Post.count} post created"
@@ -53,3 +58,4 @@ puts "#{Comment.count} comments created"
 
 puts "#{Advertisement.count} ads created"
 puts "#{Question.count} questions created"
+puts "#{Answer.count} answers created"

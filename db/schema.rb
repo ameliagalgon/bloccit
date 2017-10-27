@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20171023224257) do
-=======
 ActiveRecord::Schema.define(version: 20171027164833) do
->>>>>>> assignment-20-more-crud
 
   create_table "advertisements", force: :cascade do |t|
     t.string "title"

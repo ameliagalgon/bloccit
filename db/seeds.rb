@@ -17,6 +17,10 @@ end
 topics = Topic.all
 
 50.times do
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
     Post.create!(
          topic: topics.sample,
         title: RandomData.random_sentence,
@@ -42,11 +46,20 @@ topics = Topic.all
     )
 end
 post = Post.all
+<<<<<<< HEAD
+=======
+question = Question.all 
+>>>>>>> master
 
 100.times do
     Comment.create!(
         post: post.sample,
         body: RandomData.random_paragraph
+    )
+
+    Answer.create!(
+         question: question.sample,
+         body: RandomData.random_paragraph
     )
 end
 
@@ -57,5 +70,9 @@ puts "#{Comment.count} comments created"
 
 puts "#{Advertisement.count} ads created"
 puts "#{Question.count} questions created"
+<<<<<<< HEAD
 
 puts "#{SponsoredPost.count} ads created"
+=======
+puts "#{Answer.count} answers created"
+>>>>>>> master

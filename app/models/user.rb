@@ -15,10 +15,13 @@ class User < ApplicationRecord
      has_secure_password
 
      def format_user_name
-          partial_names = name.split
-          partial_names.each do |name|
-               name = name.capitalize
+          if name
+               uppercase_name = []
+               partial_names = name.split
+               partial_names.each do |partial_name|
+                    uppercase_name << partial_name.capitalize
+               end
+               self.name = uppercase_name.join(" ")
           end
-          self.name = partial_names.join(" ")
      end
 end

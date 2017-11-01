@@ -19,7 +19,8 @@ class User < ApplicationRecord
                uppercase_name = []
                partial_names = name.split
                partial_names.each do |partial_name|
-                    uppercase_name << partial_name.capitalize
+                    partial_name[0] = partial_name[0].capitalize
+                    uppercase_name << partial_name
                end
                self.name = uppercase_name.join(" ")
           end

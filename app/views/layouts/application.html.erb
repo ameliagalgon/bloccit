@@ -25,8 +25,7 @@
                          </div>
                          <img src=<%= avatar_url(current_user) %> />
                      <% else %>
-                         <%= link_to "Sign In", new_session_path %> or
-                         <%= link_to "Sign Up", new_user_path %>
+                         <%= link_to "Sign In", new_session_path %>&nbsp;or&nbsp;<%= link_to "Sign Up", new_user_path %>
                      <% end %>
                 </div>
             </ul>

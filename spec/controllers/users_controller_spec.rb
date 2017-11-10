@@ -60,7 +60,7 @@ RSpec.describe UsersController, type: :controller do
           end
      end
 
-     describe "POST confirm" do
+     describe "GET confirm" do
           it "returns http success status" do
                get :confirm
                expect(response).to have_http_status(:success)

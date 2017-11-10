@@ -11,6 +11,17 @@
           <%= button_to "Yes", {controller: "users", action: "create", params: {name: params[:user][:name], email: params[:user][:email], password: params[:user][:password], password_confirmation: params[:user][:password_confirmation]}}, class: 'btn btn-success' %>
      </div>
      <div class="col-md-1">
-          <%= button_to "No", {controller: "users", action: "new" }, method: :get, class: 'btn btn-default' %>
+          <%= button_to "No", {controller: "users", action: "new"}, method: :get, class: 'btn btn-default' %>
      </div>
 </div>
+
+<%
+cookies.permanent[:user_name] = {
+     value: params[:user][:name],
+     expires: 1.minute.from_now
+}
+cookies.permanent[:user_email] = {
+     value: params[:user][:email],
+     expires: 1.minute.from_now
+}
+%>

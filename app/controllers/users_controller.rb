@@ -14,6 +14,8 @@ class UsersController < ApplicationController
                flash[:notice] = "Welcome to Bloccit #{@user.name}!"
                create_session(@user)
                redirect_to root_path
+               cookies.delete(:user_name)
+               cookies.delete(:user_email)
           else
                flash.now[:alert] = "There was an error creating your account. Please try again."
                render :new
@@ -26,6 +28,15 @@ class UsersController < ApplicationController
           @user.email = params[:email]
           @user.password = params[:password]
           @user.password_confirmation = params[:password_confirmation]
+=begin
+          cookies.permanent[:user_name] = {
+               value: "" + params[:name],
+               expires: 1.hour.from_now
+          }
+          cookies[:user_email] = params[:email]
+=end
+     end
 
+     def edit
      end
 end

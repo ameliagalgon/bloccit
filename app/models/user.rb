@@ -5,6 +5,7 @@ class User < ApplicationRecord
      }
 
      before_save :format_user_name
+     before_save { self.role ||= :member }
 
      validates :name, length: {minimum: 1, maximum: 100 }, presence: true
 
@@ -14,6 +15,8 @@ class User < ApplicationRecord
      validates :email, presence: true, uniqueness: {case_sensitive: false}, length: {minimum: 3, maximum: 254}
 
      has_secure_password
+
+     enum role: [:member, :admin]
 
      def format_user_name
           if name

@@ -70,10 +70,19 @@ question = Question.all
     )
 end
 
-user = User.first
-user.update_attributes!(
-     email: "agalgon@gmail.com",
-     password: "helloworld"
+#Create an admin user
+admin = User.create!(
+     name: 'Admin User',
+     email: 'admin@example.com',
+     password: 'helloworld',
+     role: 'admin'
+)
+
+#Create a memeber
+member = User.create!(
+     name: 'Member User',
+     email: 'memeber@example.com',
+     password: 'helloworld'
 )
 
 puts "Seed finished"

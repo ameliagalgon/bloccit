@@ -71,6 +71,7 @@ question = Question.all
 end
 
 #Create an admin user
+=begin
 admin = User.create!(
      name: 'Admin User',
      email: 'admin@example.com',
@@ -83,6 +84,13 @@ member = User.create!(
      name: 'Member User',
      email: 'memeber@example.com',
      password: 'helloworld'
+)
+=end
+moderator = User.create!(
+     name: 'Moderator User',
+     email: 'moderator@example.com',
+     password: 'helloworld',
+     role: 'moderator'
 )
 
 puts "Seed finished"

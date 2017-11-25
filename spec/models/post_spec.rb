@@ -61,7 +61,7 @@ RSpec.describe Post, type: :model do
   end
 
   describe "#update_rank" do
-    let(:my_create_date) { Time.new(1970,1,1)) / 1.day.seconds }
+    let(:my_create_date) { Time.new(1970,1,1) / 1.day.seconds }
     let(:post_with_rank) { topic.posts.create!(title: "Title", body: RandomData.random_paragraph, user: user, created_at: my_create_date, rank: post_with_rank.update_rank ) }
 
     it "calculates the correct rank" do
@@ -80,6 +80,16 @@ RSpec.describe Post, type: :model do
       old_rank = post_with_rank.rank
       post_with_rank.votes.create!(value: -1)
       expect(post_with_rank.rank).to eq (0)
+    end
+  end
+
+  describe "#create_vote" do
+    it "sets the number of votes to 1" do
+      expect(post.up_votes).to eq(1)
+    end
+
+    it "assigns the post's user to the vote's user" do
+      expect(post.votes.first.user).to eq(post.user)
     end
   end
 end

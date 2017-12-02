@@ -1,0 +1,6 @@
+New post: "<%= @post.title %>"
+<%= "=" * (@post.title.length + 10) %>
+
+<%= @post.body %>
+You will receive a notification when a user posts a comment on this post.
+Visit online at: <%= topic_post_url(@post.topic, @post, anchor: "post-#{@post.id}") %>

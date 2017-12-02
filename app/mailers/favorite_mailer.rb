@@ -1,7 +1,6 @@
 class FavoriteMailer < ApplicationMailer
   default from: "agalgon@gmail.com"
-  default cc: "caila.blanton@bloc.io"
-
+  
   def new_comment(user, post, comment)
     headers["Message-ID"] = "<comments/#{comment.id}@nameless-island-88424>"
     headers["In-Reply-To"] = "<post/#{post.id}@nameless-island-88424>"
@@ -14,7 +13,9 @@ class FavoriteMailer < ApplicationMailer
     mail(to: user.email, subject: "New comment on #{post.title}")
   end
 
-  def new_post(user, post)
+  def new_post(post, user)
+    headers["References"] = "<post/#{post.id}@nameless-island-88424>"
+
     @user = user
     @post = post
 

@@ -28,4 +28,21 @@ RSpec.describe Post, type: :model do
           expect(post).to have_attributes(title: title, body: body, user: user)
       end
   end
+
+  describe "scopes" do
+    let(:post_one){ topic.posts.create!(title: "AAAAA", body: RandomData.random_paragraph, user: user, created_at: Time.new(2000,1,1)) }
+    let(:post_two){ topic.posts.create!(title: "ZZZZZ", body: RandomData.random_paragraph, user: user, created_at: Time.new(2017,1,1)) }
+
+    it "orders by descending created at date by default" do
+      expect(Post.all).to eq [post_two, post_one]
+    end
+
+    it "ordered_by_title orders posts by title" do
+      expect(Post.unscoped{Post.ordered_by_title.all}).to eq [post_one, post_two]
+    end
+
+    it "ordered_by_reverse_created_at orders posts by reverse created at date" do
+      expect(Post.unscoped{Post.ordered_by_reverse_created_at.all}).to eq [post_one, post_two]
+    end
+  end
 end

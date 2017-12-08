@@ -57,8 +57,28 @@ RSpec.describe UsersController, type: :controller do
 
      describe "POST confirm" do
           it "returns http success status" do
-               get :confirm
+               get :confirm, params: {user: {name: new_user_attributes[:name], email: new_user_attributes[:email], password: new_user_attributes[:password], password_confirmation: new_user_attributes[:password_confirmation]}}
                expect(response).to have_http_status(:success)
+          end
+
+          it "renders new template when no name given" do
+            get :confirm, params: {user: {name: "", email: new_user_attributes[:email], password: new_user_attributes[:password], password_confirmation: new_user_attributes[:password_confirmation]}}
+            expect(response).to redirect_to(new_user_path)
+          end
+
+          it "renders new template when no email given" do
+            get :confirm, params: {user: {name: new_user_attributes[:name], email: "", password: new_user_attributes[:password], password_confirmation: new_user_attributes[:password_confirmation]}}
+            expect(response).to redirect_to(new_user_path)
+          end
+
+          it "renders new template when no password is given" do
+            get :confirm, params: {user: {name: new_user_attributes[:name], email: new_user_attributes[:email], password: "", password_confirmation: new_user_attributes[:password_confirmation]}}
+            expect(response).to redirect_to(new_user_path)
+          end
+
+          it "renders new template when no password confirmation is given" do
+            get :confirm, params: {user: {name: new_user_attributes[:name], email: new_user_attributes[:email], password: new_user_attributes[:password], password_confirmation: ""}}
+            expect(response).to redirect_to(new_user_path)
           end
      end
 end

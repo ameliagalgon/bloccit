@@ -26,5 +26,9 @@ class UsersController < ApplicationController
           @user.password = params[:password]
           @user.password_confirmation = params[:password_confirmation]
 
+          if params[:user][:name] == "" || params[:user][:email] == ""|| params[:user][:password] == "" || params[:user][:password_confirmation] == ""
+            redirect_back(fallback_location: new_user_path)
+            flash[:alert] = "Please fill out all fields"
+          end
      end
 end

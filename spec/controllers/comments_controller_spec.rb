@@ -108,4 +108,11 @@ RSpec.describe CommentsController, type: :controller do
                end
           end
      end
+
+     describe "POST create" do
+       it "doesn't create comment if less than 5 characters" do
+         expect{ post :create, params: {post_id: my_post.id, comment: {body: "1234"}} }.to change(Comment, :count).by(0)
+       end
+     end
+
 end

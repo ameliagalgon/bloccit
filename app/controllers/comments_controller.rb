@@ -12,7 +12,7 @@ class CommentsController < ApplicationController
                flash[:notice] = "Comment saved sucessfully"
                redirect_to [@post.topic, @post]
           else
-               flash[:alert] = "Comment failed to save"
+               flash[:alert] = "Comment failed to save. Must be at least 5 characters long."
                redirect_to [@post.topic, @post]
           end
      end

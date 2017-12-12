@@ -28,10 +28,11 @@ RSpec.describe Comment, type: :model do
     it "sends an email to users who have favorited the post" do
       favorite = user.favorites.create(post: post)
       @another_comment.save!
-      user_subject = FavoriteMailer.deliveries.map do |m|
+      user_subjects = FavoriteMailer.deliveries.map do |m|
         { :email => m.to, :subject => m.subject }
       end
-      expect(FavoriteMailer.deliveries.map(&:to)).to include({:email => [user.email], :subject => "New post on #{post.id}"})
+
+      expect(user_subjects).to include({ :email => [user.email], :subject => "New comment on #{post.title}"})
     end
 
     it "does not send emails to users who haven't favorited the post" do

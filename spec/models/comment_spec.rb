@@ -31,7 +31,7 @@ RSpec.describe Comment, type: :model do
       user_subject = FavoriteMailer.deliveries.map do |m|
         { :email => m.to, :subject => m.subject }
       end
-      expect(FavoriteMailer.deliveries.map(&:to)).to include([user.email])
+      expect(FavoriteMailer.deliveries.map(&:to)).to include({:email => [user.email], :subject => "New post on #{post.id}"})
     end
 
     it "does not send emails to users who haven't favorited the post" do

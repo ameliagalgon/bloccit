@@ -1,3 +1,4 @@
+require 'pry'
 require 'rails_helper'
 
 RSpec.describe Comment, type: :model do
@@ -26,14 +27,16 @@ RSpec.describe Comment, type: :model do
 
     it "sends an email to users who have favorited the post" do
       favorite = user.favorites.create(post: post)
-      expect(FavoriteMailer).to receive(:new_comment).with(user, post, @another_comment).and_return(double(deliver_now: true))
-
       @another_comment.save!
+      user_subject = FavoriteMailer.deliveries.map do |m|
+        { :email => m.to, :subject => m.subject }
+      end
+      expect(FavoriteMailer.deliveries.map(&:to)).to include([user.email])
     end
 
     it "does not send emails to users who haven't favorited the post" do
-      expect(FavoriteMailer).not_to receive(:new_comment)
-
+      #expect(FavoriteMailer).not_to receive(:new_comment).with(another_user, post, @another_comment)
+      expect(FavoriteMailer.deliveries.map(&:to)).not_to include([user.email])
       @another_comment.save!
     end
   end

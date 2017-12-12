@@ -1,3 +1,4 @@
+require 'pry'
 class Comment < ApplicationRecord
   belongs_to :post
   belongs_to :user
@@ -10,7 +11,9 @@ class Comment < ApplicationRecord
   private
 
   def send_favorite_emails
+    #binding.pry
     post.favorites.each do |favorite|
+      #binding.pry
       FavoriteMailer.new_comment(favorite.user, post, self).deliver_now
     end
   end

@@ -114,7 +114,7 @@ RSpec.describe UsersController, type: :controller do
        let(:user) { create(:user) }
        let(:another_user) { create(:user) }
        let(:post) { create(:post, user_id: another_user.id) }
-      
+
        it "returns http success" do
             get :show, params: {id: user.id}
             expect(response).to have_http_status(:success)
@@ -133,7 +133,8 @@ RSpec.describe UsersController, type: :controller do
        it "displays users favorites" do
          Favorite.create(post_id: post.id, user_id: user.id)
          get :show, params: {id: user.id}
-         expect(response).to render_template(:partial => 'post/_post')
+         expect(response).to render_template(:partial => "_post", :locals => { :post => post } )
+         #expect(response).to render_template(:partial => 'post/_post')
        end
      end
 end
